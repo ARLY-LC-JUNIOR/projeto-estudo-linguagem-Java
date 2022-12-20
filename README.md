@@ -1,5 +1,5 @@
 
-- ## Repositório com intuito de auto desenvolvimento, cmpartilhamento, parcerias na Linguagem-Java, 
+- ### Repositório com intuito do aprendizado e auto desenvolvimento, compartilhamento e parcerias na Linguagem Java. 
 
 
 - ### ***Próximos Passos será***
