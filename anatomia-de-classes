@@ -1,0 +1,18 @@
+    public  class  AnatomiaClasse { 
+
+    public  static  void  principal ( String [] args ) {
+
+        String  primeiroNome = "Arly" ;
+        String  segundoNome = "Júnior" ;
+
+        String  nomeCompleto = nomeCompleto ( primeiroNome , segundoNome );
+
+        Sistema . fora . println ( nomeCompleto );
+    }
+
+    public  static  String  nomeCompleto ( String  primeiroNome , String  segundoNome ) {
+        return  "Resultado do método " + primeiroNome . concat ( " " ). concat ( segundoNome );
+
+    }
+
+}
