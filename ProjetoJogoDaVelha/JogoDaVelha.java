@@ -1,90 +1,63 @@
 import java.util.Scanner;
 
 public class JogoDaVelha {
+
     public static void main(String[] args) {
-        Campo[][] velha = new Campo[3][3];
-        char simboloAtual = 'X';
-        Boolean game = true;
-        String vitoria = "";
-        Scanner scan = new Scanner(System.in);
+        try (Scanner ler = new Scanner(System.in)) {
+            Ms jogo = new Ms();
+            String posicao;
+            int valida = 0, Jogadas = 0;
 
-        iniciarJogo(velha);
+            while (true) {
+                System.out.println("+++++Jogo Da Velha+++++");
+                jogo.Mostrar();
 
-        while (game) {
-            desenhaJogo(velha);
-            vitoria = verificaVitoria(velha);
-            if (!vitoria.equals("")) {
-                System.out.printf("Jogador %s venceu%n", vitoria);
-                break;
-            }
-            try {
-                if (verificarJogada(velha, jogar(scan, simboloAtual), simboloAtual)) {
-                    if (simboloAtual == 'X') {
-                        if (simboloAtual == 'X')
-                            ;
-                        simboloAtual = 'O';
-                    } else {
-                        simboloAtual = 'X';
+                do {// inicia o primeiro jogador
+                    System.out.print("Jogador 1, informe a posição: ");
+                    posicao = ler.next();
+                    while (!((Ms) jogo).Valido(posicao)) {
+                        System.out.println("Jogada Invalida, Escolha Outra Posição!!!");
+                        System.out.print("Jogador 1, informe a posição: ");
+                        posicao = ler.next();
+                        valida = 0;
                     }
+                    jogo.jogada(posicao, "X");
+                    valida = 1;
+
+                } while (valida == 0);// fim primeiro jogador
+
+                Jogadas++;
+                valida = 0;
+                jogo.Mostrar();
+                if (!jogo.Ganhou(Jogadas).equals("null")) {
+                    break;
                 }
 
-            } catch (Exception e) {
-                System.out.printf("Erro");
+                do {// inicia o segundo jogador
+                    System.out.print("Jogador 2, informe a posição: ");
+                    posicao = ler.next();
+                    while (!jogo.Valido(posicao)) {
+                        System.out.println("Jogada Invalida, Escolha Outra Posição!!!");
+                        System.out.print("Jogador 2, informe a posição: ");
+                        posicao = ler.next();
+                        valida = 0;
+                    }
+                    ((Ms) jogo).jogada(posicao, "O");
+                    valida = 1;
+
+                } while (valida == 0);// fim segundo jogador
+
+                Jogadas++;
+                valida = 0;
+                jogo.Mostrar();
+                if (!jogo.Ganhou(Jogadas).equals("null")) {
+                    break;
+                }
+
             }
-        }
-        System.out.printf("Fim do Jogo");
-    }
-
-    public static void desenhaJogo(Campo[][] velha) {
-        limparTela();
-        System.out.println("   0   1   2");
-        System.out.printf("0  %c | %c | %c %n", velha[0][0].getSimbolo(), velha[0][1].getSimbolo(),
-                velha[0][2].getSimbolo());
-        System.out.println("   ----------");
-        System.out.printf("1  %c | %c | %c %n", velha[1][0].getSimbolo(), velha[1][1].getSimbolo(),
-                velha[1][2].getSimbolo());
-        System.out.println("   ----------");
-        System.out.printf("2  %c | %c | %c %n", velha[2][0].getSimbolo(), velha[2][1].getSimbolo(),
-                velha[2][2].getSimbolo());
-
-    }
-
-    public static void limparTela() {
-        for (int cont = 0; cont < 200; cont++) {
-            System.out.println("");
-
-        }
-    }
-
-    public static int[] jogar(Scanner scan, char sa) {
-        int p[] = new int[2];
-        System.out.printf("%s %c%", "Quem joga: ", sa);
-        System.out.print("Informa a linha: ");
-        p[0] = scan.nextInt();
-        System.out.printf("%s %c%", "Informe a coluna:  ");
-        p[1] = scan.nextInt();
-        return p;
-    }
-
-    public static Boolean verificarJogada(Campo[][] velha, int p[], char simboloAtual) {
-        if (velha[p[0]][p[1]].getSimbolo() == ' ') {
-            velha[p[0]][p[1]].setSimbolo(simboloAtual);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public static void iniciarJogo(Campo[][] velha){
-        for(int 1=0;1 < 3;1++){
-            for(int c=0;c < 3;c++){
-                velha[1][c]=new Campo();
-            }
+            System.out.println("O " + jogo.Ganhou(Jogadas) + " Venceu!");
         }
 
     }
 
-    public static String verificaVitoria(Campo[][] velha) {
-        return "";
-    }
 }
