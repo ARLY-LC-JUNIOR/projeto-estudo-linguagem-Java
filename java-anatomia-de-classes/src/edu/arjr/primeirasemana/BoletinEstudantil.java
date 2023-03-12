@@ -1,8 +1,8 @@
-package BoletimEstudantil;
+package edu.arjr.primeirasemana;
 
-public class BoletimEstudantil {
+public class BoletinEstudantil {
     public static void main(String[] args) {
-        int mediaFinal = 5;
+        int mediaFinal = 8;
         if (mediaFinal < 6)
             System.out.println("REPROVADO");
         else if (mediaFinal == 6)
@@ -10,5 +10,4 @@ public class BoletimEstudantil {
         else
             System.out.println("APROVADO");
     }
-
 }
