@@ -1,4 +1,4 @@
-package OperadorRepeticao;
+package Operadores;
 
 public class OperadoRepeticao {
     public static void main(String[] args) {
